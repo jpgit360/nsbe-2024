@@ -1,6 +1,8 @@
 Flask==3.0.2
+Flask_Cors==4.0.0
 matplotlib==3.8.3
 numpy==1.26.1
 openpyxl==3.1.2
 pandas==2.2.1
+peewee==3.17.1
 plotly==5.19.0

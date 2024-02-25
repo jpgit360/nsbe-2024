@@ -1,5 +1,5 @@
 # libraries related to flask
-from flask import Flask, jsonify, Response, render_template
+from flask import Flask, jsonify, Response, render_template, request
 
 # general libraries
 from dataclasses import dataclass
@@ -14,6 +14,7 @@ import io
 from numpy import nan
 import numpy as np
 from math import isnan
+import plotly
 import plotly.express as px
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
@@ -98,7 +99,7 @@ class SchoolDistrict:
         )
         
         district_dict = asdict(curr_district)
-        return district_dict
+        return json.dumps(district_dict)
     
     def get_specific_year_data(self, type, year):
         return self.df_avg_year_data.loc[year - 2009 + 1, type]
@@ -181,20 +182,47 @@ class SchoolDistrict:
 
         fig.update_traces(marker_size=df['fundinggap'].abs())
         fig.update_layout(mapbox_center={"lat": ui_lat, "lon": ui_lon})
-        fig.write_html("plot.html")
-        return render_template('plot.html')
+        # fig.write_html("plot.html")
+        graphJSON = plotly.io.to_json(fig, pretty=True)
+        return graphJSON
 
 school_district_instance = SchoolDistrict()
 school_district_instance.set_data()
 result = school_district_instance.get_all_data()
 
-@app.route('/api/districts', methods=['GET'])
-def get_districts():
-    return jsonify(result)
+@app.route('/api/districts', methods=['POST'])
+def get_district_data():
+    try:
+        data = request.get_json()
+        district_name = data.get('districtName', '')  # Assuming the key is 'districtName' in the request JSON
+        if not district_name:
+            raise ValueError("District name is missing in the request data.")
 
-@app.route('/plot.png')
+        data_response = school_district_instance.get_specific_district_data(district_name)
+
+        return data_response
+
+    except Exception as e:
+        error_message = f"Error getting data for district: {str(e)}"
+        print(f"Error: {error_message}")
+        return jsonify({"error": error_message}), 500
+
+@app.route('/plot.png', methods=['POST'])
 def display_graph():
-    return school_district_instance.plot_district("HUMPHREYS CO SCHOOL DIST")
+    try:
+        data = request.get_json()
+        district_name = data.get('districtName', '')  # Assuming the key is 'districtName' in the request JSON
+        if not district_name:
+            raise ValueError("District name is missing in the request data.")
+
+        image_response = school_district_instance.plot_district(district_name)
+
+        return image_response
+
+    except Exception as e:
+        error_message = f"Error generating plot: {str(e)}"
+        print(f"Error: {error_message}")
+        return jsonify({"error": error_message}), 500
 
 @app.route('/map')
 def display_map():

@@ -2,7 +2,7 @@
   "name": "cityhax",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://127.0.0.1:5000", 
+  "proxy": "http://127.0.0.1:5000",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -14,7 +14,8 @@
     "@next/font": "^14.1.0",
     "next": "14.1.0",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-plotly.js": "^2.6.0"
   },
   "devDependencies": {
     "@types/next": "^9.0.0",

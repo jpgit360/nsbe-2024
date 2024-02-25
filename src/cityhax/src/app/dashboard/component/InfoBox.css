@@ -1,0 +1,6 @@
+/* InfoBox.css */
+.json-text {
+    white-space: pre-wrap;
+    font-family: "Courier New", monospace; /* Optional: Choose a monospaced font for better alignment */
+    font-size: 14px;
+}
