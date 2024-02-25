@@ -1,8 +1,5 @@
 # libraries related to flask
-from flask import Flask
-from flask import jsonify
-from flask import render_template
-from flask import Response
+from flask import Flask, jsonify, Response, render_template
 
 # general libraries
 from dataclasses import dataclass
@@ -21,14 +18,17 @@ import plotly.express as px
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use('agg')
 import openpyxl
+from flask_cors import CORS
 
 #api libraries
-import json
 from positionstack_api import API_KEY
 import http.client, urllib.parse
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='template')
+CORS(app)
 
 @dataclass
 class DistrictInfo:
@@ -95,7 +95,6 @@ class SchoolDistrict:
             district_data.iloc[0]['enroll'],
             0,
             district_data.iloc[0]['state_name']
-
         )
         
         district_dict = asdict(curr_district)
@@ -182,8 +181,8 @@ class SchoolDistrict:
 
         fig.update_traces(marker_size=df['fundinggap'].abs())
         fig.update_layout(mapbox_center={"lat": ui_lat, "lon": ui_lon})
-        fig.show()
         fig.write_html("plot.html")
+        return render_template('plot.html')
 
 school_district_instance = SchoolDistrict()
 school_district_instance.set_data()
@@ -196,6 +195,11 @@ def get_districts():
 @app.route('/plot.png')
 def display_graph():
     return school_district_instance.plot_district("HUMPHREYS CO SCHOOL DIST")
+
+@app.route('/map')
+def display_map():
+    return school_district_instance.plot_map()
+
 
 if __name__ == "__main__":
     app.run(debug=True)
