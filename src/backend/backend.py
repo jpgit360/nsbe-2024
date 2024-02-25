@@ -101,6 +101,12 @@ class SchoolDistrict:
         district_dict = asdict(curr_district)
         return json.dumps(district_dict)
     
+    def get_specific_district_lat_lon(self, name):
+        district_data = self.df_avg_data[self.df_avg_data['district'] == name]
+        lat = district_data.iloc[0]['lat']
+        lon = district_data.iloc[0]['lon']
+        return (lat, lon)
+    
     def get_specific_year_data(self, type, year):
         return self.df_avg_year_data.loc[year - 2009 + 1, type]
     
@@ -137,25 +143,7 @@ class SchoolDistrict:
         return Response(pngImage.getvalue(), mimetype='image/png')
     
     def plot_map(self):
-        postal_code = "90015" # GET FROM FRONTEND
-        conn = http.client.HTTPConnection('api.positionstack.com')
-
-        params = urllib.parse.urlencode({
-            'access_key': API_KEY,
-            'query': postal_code,
-            'country': 'US',
-            'limit': 1
-            })
-
-        conn.request('GET', '/v1/forward?{}'.format(params))
-
-        res = conn.getresponse()
-        data = res.read()
-
-        x = data.decode('utf-8')
-        json_data = json.loads(x)
-        ui_lat = json_data['data'][0]["latitude"]
-        ui_lon = json_data['data'][0]["longitude"]
+        ui_lat, ui_lon = self.get_specific_district_lat_lon("ALBERTVILLE CITY") # FROM FRONTEND
 
         df = pd.read_csv(r"data/dataset_by_avgs.csv")
         avg_fundinggap = df['fundinggap'].mean()
