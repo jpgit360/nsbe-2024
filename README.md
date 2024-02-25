@@ -1,4 +1,4 @@
-# nsbe-2024
+# Branch
 
 ## Inspiration
 We believe that everybody should have an equal chance of getting the right educational resources regardless of their financial status. Throughout our research phase, we have found and visualized extensive data on a geographic map heavily depicting the lack of educational resources in different districts within the USA, heavily emphasizing that more needs to be done for these communities in terms of education.
