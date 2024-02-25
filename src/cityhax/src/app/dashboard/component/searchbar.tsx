@@ -23,7 +23,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
           type="text"
           value={searchTerm}
           onChange={handleInputChange}
-          placeholder="Please enter postal code: "
+          placeholder="Enter School District: "
         />
       </form>
     </div>
