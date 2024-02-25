@@ -4,7 +4,7 @@ import SearchBar from "./component/searchbar"
 import Map from "./component/Map"
 import Plot from "./component/Plot"
 import InfoBox from "./component/InfoBox";
-
+import Users from "./component/users"
 import { Outfit } from 'next/font/google';
 const outfit = Outfit({
   subsets: ['latin'],
@@ -30,6 +30,9 @@ export default function DashBoad() {
         </div>
         <div className="map">
           <Map />
+        </div>
+        <div className="users">
+          <Users />
         </div>
       </div>
       <div className="info-box">
