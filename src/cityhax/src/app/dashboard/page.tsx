@@ -5,6 +5,8 @@ import Map from "./component/Map"
 import Plot from "./component/Plot"
 import InfoBox from "./component/InfoBox";
 import Users from "./component/users"
+import Box from "./component/ObjectBox";
+
 import { Outfit } from 'next/font/google';
 const outfit = Outfit({
   subsets: ['latin'],
@@ -38,6 +40,9 @@ export default function DashBoad() {
       <div className="info-box">
         {/* Info Box centered below */}
         <InfoBox districtName={searchTerm.toUpperCase()} />
+      </div>
+      <div className="boxes-grid">
+        <Box />
       </div>
     </div>
   );

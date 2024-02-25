@@ -148,3 +148,22 @@ input {
 .info-box p {
   margin-bottom: 0.5rem;
 }
+
+.box {
+  padding: 1rem;
+  margin: 1rem;
+  border: 1px solid #ccc;
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center;
+}
+
+.name, .email {
+  font-weight: bold;
+} 
+
+.boxes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem; 
+}
