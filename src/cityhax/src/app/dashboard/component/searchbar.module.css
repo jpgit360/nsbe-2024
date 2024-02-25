@@ -1,0 +1,4 @@
+.someCSSModulesClass :global .any-global-class {
+    background-color: blue;
+  }
+
