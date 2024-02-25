@@ -23,6 +23,11 @@ from matplotlib.figure import Figure
 import matplotlib.pyplot as plt
 import openpyxl
 
+#api libraries
+import json
+from positionstack_api import API_KEY
+import http.client, urllib.parse
+
 app = Flask(__name__)
 
 @dataclass
@@ -132,12 +137,25 @@ class SchoolDistrict:
         return Response(pngImage.getvalue(), mimetype='image/png')
     
     def plot_map(self):
-        """ 
-        CHANGE THESE LATER
-        GET FROM FRONT END
-        """
-        ui_lat = 39.8283
-        ui_lon = -98.5795
+        postal_code = "90015" # GET FROM FRONTEND
+        conn = http.client.HTTPConnection('api.positionstack.com')
+
+        params = urllib.parse.urlencode({
+            'access_key': API_KEY,
+            'query': postal_code,
+            'country': 'US',
+            'limit': 1
+            })
+
+        conn.request('GET', '/v1/forward?{}'.format(params))
+
+        res = conn.getresponse()
+        data = res.read()
+
+        x = data.decode('utf-8')
+        json_data = json.loads(x)
+        ui_lat = json_data['data'][0]["latitude"]
+        ui_lon = json_data['data'][0]["longitude"]
 
         df = pd.read_csv(r"data/dataset_by_avgs.csv")
         avg_fundinggap = df['fundinggap'].mean()

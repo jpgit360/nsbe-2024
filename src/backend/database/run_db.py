@@ -20,5 +20,5 @@ for student in all_students:
 
 """ all = A.select()
 
-for niga in all:
-    print(niga.a, niga.b) """
+for bruh in all:
+    print(bruh.a, bruh.b) """
