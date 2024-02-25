@@ -92,3 +92,59 @@ input {
   left: 50px;
   font-size: 30px;
 }
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.welcome-text {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.search-bar {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.plot-map-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.plot,
+.map,
+.info-box {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 1rem;
+  width: 100%;
+  max-width: 700px;
+}
+
+.plot,
+.map {
+  margin: 1rem auto;
+}
+
+.info-box {
+  margin-top: 2rem;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.plot,
+.map {
+  height: 400px;
+}
+
+.info-box p {
+  margin-bottom: 0.5rem;
+}

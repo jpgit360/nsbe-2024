@@ -143,34 +143,14 @@ class SchoolDistrict:
         return Response(pngImage.getvalue(), mimetype='image/png')
     
     def plot_map(self):
-        ui_lat, ui_lon = self.get_specific_district_lat_lon("ALBERTVILLE CITY") # FROM FRONTEND
-
-        df = pd.read_csv(r"data/dataset_by_avgs.csv")
+        px.set_mapbox_access_token(open(".mapbox_token").read())
+        df = pd.read_csv("./data/dataset_by_avgs.csv")
         avg_fundinggap = df['fundinggap'].mean()
-
-        city_data = df['city'].tolist()
-        state_data = df['state_name'].tolist()
-
-        mapbox_access_token = open("../../mapbox_token").read()
-
-        fig = px.scatter_mapbox(df, 
-            lat="lat", 
-            lon="lon", 
-            color="fundinggap", 
-            size="ppcstot",
-            hover_name="district",  # Specify column for hover name
-            hover_data={
-                "<b>City</b>": df['city'],  # Make city name bold, 
-            },
-            color_continuous_scale=px.colors.diverging.Portland,
-            color_continuous_midpoint=avg_fundinggap,
-            size_max=15,
-            zoom=3
-        )
-
-        fig.update_traces(marker_size=df['fundinggap'].abs())
-        fig.update_layout(mapbox_center={"lat": ui_lat, "lon": ui_lon})
-        # fig.write_html("plot.html")
+        fig = px.scatter_mapbox(df, lat="lat", lon="lon",     color="fundinggap", size="ppcstot",
+                        color_continuous_scale=px.colors.diverging.Portland, 
+                        color_continuous_midpoint=avg_fundinggap,
+                        size_max=10, zoom=2)
+        
         graphJSON = plotly.io.to_json(fig, pretty=True)
         return graphJSON
 
@@ -215,7 +195,6 @@ def display_graph():
 @app.route('/map')
 def display_map():
     return school_district_instance.plot_map()
-
 
 if __name__ == "__main__":
     app.run(debug=True)

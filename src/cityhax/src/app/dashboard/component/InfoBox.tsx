@@ -29,19 +29,17 @@ export default function InfoBox({ districtName }) {
 
     return (
         <div>
-            {jsonData ? (
-                <pre className="json-text">
-                    {Object.entries(jsonData).map(([key, value]) => (
-                        <div key={key}>
-                            <span className="font-semibold">{key}:</span> {value}
-                        </div>
-                    ))}
-                </pre>
-            ) : dataLoadError ? (
-                <p>Error loading data.</p>
-            ) : (
-                <p>Loading data...</p>
-            )}
+          {jsonData ? (
+            <pre className="json-text">
+              {Object.entries(jsonData).map(([key, value]) => (
+                <div key={key}>
+                  <span className="font-semibold">{key}:</span> {value}
+                </div>
+              ))}
+            </pre>
+          ) : (
+            <div /> // Empty div when no data or error
+          )}
         </div>
-    );
+      );
 }

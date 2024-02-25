@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
 interface SearchBarProps {
-  // Add any additional props you might need
+  onSearch: (term: string) => void;
 }
 
-const SearchBar: React.FC<SearchBarProps> = () => {
+const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   const [searchTerm, setSearchTerm] = useState<string>('');
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -12,7 +12,7 @@ const SearchBar: React.FC<SearchBarProps> = () => {
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    console.log(`Form Submitted\nSearch Term: ${searchTerm}`);
+    onSearch(searchTerm);
     event.preventDefault();
   };
 

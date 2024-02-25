@@ -1,0 +1,38 @@
+Defaulting to user installation because normal site-packages is not writeable
+Collecting nbformat
+  Obtaining dependency information for nbformat from https://files.pythonhosted.org/packages/f4/e7/ef30a90b70eba39e675689b9eaaa92530a71d7435ab8f9cae520814e0caf/nbformat-5.9.2-py3-none-any.whl.metadata
+  Downloading nbformat-5.9.2-py3-none-any.whl.metadata (3.4 kB)
+Collecting fastjsonschema (from nbformat)
+  Obtaining dependency information for fastjsonschema from https://files.pythonhosted.org/packages/9c/b9/79691036d4a8f9857e74d1728b23f34f583b81350a27492edda58d5604e1/fastjsonschema-2.19.1-py3-none-any.whl.metadata
+  Downloading fastjsonschema-2.19.1-py3-none-any.whl.metadata (2.1 kB)
+Collecting jsonschema>=2.6 (from nbformat)
+  Obtaining dependency information for jsonschema>=2.6 from https://files.pythonhosted.org/packages/39/9d/b035d024c62c85f2e2d4806a59ca7b8520307f34e0932fbc8cc75fe7b2d9/jsonschema-4.21.1-py3-none-any.whl.metadata
+  Downloading jsonschema-4.21.1-py3-none-any.whl.metadata (7.8 kB)
+Requirement already satisfied: jupyter-core in /Users/cuikenny/Library/Python/3.9/lib/python/site-packages (from nbformat) (5.3.1)
+Requirement already satisfied: traitlets>=5.1 in /Users/cuikenny/Library/Python/3.9/lib/python/site-packages (from nbformat) (5.9.0)
+Collecting attrs>=22.2.0 (from jsonschema>=2.6->nbformat)
+  Obtaining dependency information for attrs>=22.2.0 from https://files.pythonhosted.org/packages/e0/44/827b2a91a5816512fcaf3cc4ebc465ccd5d598c45cefa6703fcf4a79018f/attrs-23.2.0-py3-none-any.whl.metadata
+  Downloading attrs-23.2.0-py3-none-any.whl.metadata (9.5 kB)
+Collecting jsonschema-specifications>=2023.03.6 (from jsonschema>=2.6->nbformat)
+  Obtaining dependency information for jsonschema-specifications>=2023.03.6 from https://files.pythonhosted.org/packages/ee/07/44bd408781594c4d0a027666ef27fab1e441b109dc3b76b4f836f8fd04fe/jsonschema_specifications-2023.12.1-py3-none-any.whl.metadata
+  Downloading jsonschema_specifications-2023.12.1-py3-none-any.whl.metadata (3.0 kB)
+Collecting referencing>=0.28.4 (from jsonschema>=2.6->nbformat)
+  Obtaining dependency information for referencing>=0.28.4 from https://files.pythonhosted.org/packages/90/10/1c92edb0a0a14b67ff825bc338e74bc49ab27d3f3bae3f9a02838cba546f/referencing-0.33.0-py3-none-any.whl.metadata
+  Downloading referencing-0.33.0-py3-none-any.whl.metadata (2.7 kB)
+Collecting rpds-py>=0.7.1 (from jsonschema>=2.6->nbformat)
+  Obtaining dependency information for rpds-py>=0.7.1 from https://files.pythonhosted.org/packages/fc/82/4cc5a780f298a92ec5bfb1d7af33d16f07fe689b31a4dfc49f5ede267e88/rpds_py-0.18.0-cp39-cp39-macosx_11_0_arm64.whl.metadata
+  Downloading rpds_py-0.18.0-cp39-cp39-macosx_11_0_arm64.whl.metadata (4.1 kB)
+Requirement already satisfied: platformdirs>=2.5 in /Users/cuikenny/Library/Python/3.9/lib/python/site-packages (from jupyter-core->nbformat) (3.10.0)
+Downloading nbformat-5.9.2-py3-none-any.whl (77 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 77.6/77.6 kB 7.3 MB/s eta 0:00:00
+Downloading jsonschema-4.21.1-py3-none-any.whl (85 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 85.5/85.5 kB 12.5 MB/s eta 0:00:00
+Downloading fastjsonschema-2.19.1-py3-none-any.whl (23 kB)
+Downloading attrs-23.2.0-py3-none-any.whl (60 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 60.8/60.8 kB 11.2 MB/s eta 0:00:00
+Downloading jsonschema_specifications-2023.12.1-py3-none-any.whl (18 kB)
+Downloading referencing-0.33.0-py3-none-any.whl (26 kB)
+Downloading rpds_py-0.18.0-cp39-cp39-macosx_11_0_arm64.whl (330 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 331.0/331.0 kB 18.0 MB/s eta 0:00:00
+Installing collected packages: fastjsonschema, rpds-py, attrs, referencing, jsonschema-specifications, jsonschema, nbformat
+Successfully installed attrs-23.2.0 fastjsonschema-2.19.1 jsonschema-4.21.1 jsonschema-specifications-2023.12.1 nbformat-5.9.2 referencing-0.33.0 rpds-py-0.18.0

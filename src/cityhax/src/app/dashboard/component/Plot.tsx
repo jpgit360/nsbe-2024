@@ -31,11 +31,9 @@ export default function Plot( { districtName } ) {
     return (
         <div>
             {imageSrc ? (
-                <img src={imageSrc} alt="Generated Plot" />
-            ) : imageLoadError ? (
-                <p>Error loading image.</p>
+            <img src={imageSrc} alt="Generated Plot" />
             ) : (
-                <p>Loading image...</p>
+            <div /> // Empty div when no image or error
             )}
         </div>
     );
